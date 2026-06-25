@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+*.tsbuildinfo
+
+# environment
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+logs/
+npm-debug.log*
+
+# test/coverage
+coverage/
+.nyc_output/
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+# opencode (skills/agents still tracked, this excludes the cache)
+.opencode/cache/
