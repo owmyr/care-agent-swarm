@@ -1,0 +1,45 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "references": {
+    "anthropic-sdk": {
+      "repository": "anthropics/anthropic-sdk-typescript",
+      "description": "Use for Anthropic TypeScript SDK internals: retry, timeout, RateLimitError, withRawResponse headers (Retry-After, request-id)"
+    }
+  },
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "npm run *": "allow",
+      "npm install *": "allow",
+      "npm test *": "allow",
+      "npx vitest *": "allow",
+      "npx biome *": "allow",
+      "npx tsc *": "allow",
+      "node *": "allow",
+      "tsx *": "allow",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git add *": "ask",
+      "git commit *": "ask",
+      "git push *": "deny",
+      "git remote *": "ask",
+      "rm -rf *": "deny",
+      "rm *": "ask"
+    },
+    "read": {
+      "*.env": "deny",
+      "*.env.*": "deny",
+      ".env": "deny",
+      ".env.example": "allow"
+    },
+    "webfetch": "ask",
+    "external_directory": {
+      "~/.config/opencode/**": "allow"
+    }
+  }
+}

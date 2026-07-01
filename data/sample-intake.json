@@ -1,0 +1,30 @@
+{
+  "residentId": "res_margaret_001",
+  "residentName": "Margaret Thompson",
+  "dateOfBirth": "1947-03-12",
+  "admissionDate": "2026-06-20",
+  "state": "CA",
+  "careLevel": "assisted",
+  "rawClinicalNotes": "78-year-old female with a history of hypertension (managed with lisinopril 10mg daily), type 2 diabetes (metformin 500mg twice daily), mild cognitive decline noted in 2024, history of two falls in the past 12 months. Uses a walker for ambulation. Allergic to penicillin (rash). Recent labs (May 2026) show HbA1c 7.1, eGFR 58. Family reports occasional confusion at night (sundowning). No recent hospitalizations.",
+  "carePlan": {
+    "dailyActivities": [
+      "Morning group exercise (30 min, seated)",
+      "Assisted bathing twice weekly",
+      "Three structured meals in the dining room",
+      "Afternoon social activities (bingo, music)",
+      "Evening quiet time with orientation cues"
+    ],
+    "medicalSupervision": "Daily vitals (BP, glucose) by charge nurse; weekly medication review by attending physician; monthly care plan review by interdisciplinary team.",
+    "emergencyProtocol": "Code Blue for cardiac/respiratory arrest. Fall protocol: do not move resident, call nurse immediately, document time of fall and any observed injury. Hypoglycemia protocol: check glucose, give 15g fast-acting carbs if <70 mg/dL, recheck in 15 min.",
+    "nutritionPlan": "Diabetic diet, 1800 kcal/day, carbohydrate-controlled. Three meals plus afternoon snack. Thickened liquids as needed (Stage 1 dysphagia diet).",
+    "mobilityAssistance": "Walker required at all times. One-staff assist for transfers. Non-slip footwear. Bed alarm for nighttime fall risk."
+  },
+  "familyContact": {
+    "name": "Sarah Thompson (daughter)",
+    "email": "sarah.thompson@example.com",
+    "phone": "+1-415-555-0142"
+  },
+  "facilityName": "Sunrise Gardens Care Center",
+  "assignedNurse": "Maria Alvarez, RN",
+  "visitingHours": "9:00 AM – 7:00 PM daily"
+}
