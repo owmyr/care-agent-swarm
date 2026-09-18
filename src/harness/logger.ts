@@ -41,7 +41,7 @@ export interface LoggerFactoryOptions {
 export function createLogger(options: LoggerFactoryOptions = {}): Logger {
   const config: LoggerOptions = {
     level: options.level ?? process.env.LOG_LEVEL ?? 'info',
-    name: options.name ?? 'accodal',
+    name: options.name ?? 'care-agent-swarm',
     redact: {
       paths: options.redactPaths ?? DEFAULT_REDACT_PATHS,
       censor: '[REDACTED]',

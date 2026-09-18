@@ -1,8 +1,8 @@
 {
-  "name": "accodal-care-crm-ai",
+  "name": "care-agent-swarm",
   "version": "0.1.0",
   "private": true,
-  "description": "Residential Care CRM — AI Layer (Accodal technical assessment, Section B)",
+  "description": "Multi-Agent Swarm AI Orchestration Layer for Residential Healthcare Systems",
   "type": "module",
   "engines": {
     "node": ">=20"

@@ -12,9 +12,9 @@ const RED = '\x1b[31m';
 export function renderBanner(): void {
   process.stdout.write(
     `\n${BOLD}${CYAN}════════════════════════════════════════════════════════════════${RESET}\n` +
-      `${BOLD}${CYAN}  Accodal Residential Care CRM — AI Layer (DEMO)${RESET}\n` +
+      `${BOLD}${CYAN}  Multi-Agent Swarm AI Orchestration Layer (DEMO)${RESET}\n` +
       `${BOLD}${CYAN}════════════════════════════════════════════════════════════════${RESET}\n` +
-      `${DIM}  Three scenarios required by the video walkthrough.${RESET}\n\n`,
+      `${DIM}  Deterministic verification of resilience, swarm, and loop guard.${RESET}\n\n`,
   );
 }
 

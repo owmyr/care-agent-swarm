@@ -7,7 +7,7 @@ description: Use when building or editing src/harness/* — defines the reusable
 
 The harness is the only thing in this system that talks to Anthropic. Every agent goes through it.
 
-## What it must do (the assessment's 4 requirements)
+## Core Capabilities
 
 1. **Input + output schema validation** — Zod. `HarnessCallOptions` schema (parsed at the entry
    of `call()`) + per-agent output schema. On output validation failure, retry the call once

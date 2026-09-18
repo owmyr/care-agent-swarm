@@ -179,7 +179,7 @@ async function main(): Promise<void> {
   const demoMode = (process.env.DEMO_MODE ?? 'true').toLowerCase() !== 'false';
   const apiKey = process.env.ANTHROPIC_API_KEY;
   process.stdout.write(
-    `\n  DEMO_MODE=${demoMode ? 'true' : 'false'}; ANTHROPIC_API_KEY=${apiKey ? 'set' : 'unset'}.\n  The 3 demo scenarios always use scripted FakeAnthropicClient (deterministic for video recording).\n  To hit the real API, see src/index.ts and set DEMO_MODE=false with a valid key.\n\n`,
+    `\n  DEMO_MODE=${demoMode ? 'true' : 'false'}; ANTHROPIC_API_KEY=${apiKey ? 'set' : 'unset'}.\n  The 3 demo scenarios always use scripted FakeAnthropicClient (deterministic offline verification).\n  To hit the real API, see src/index.ts and set DEMO_MODE=false with a valid key.\n\n`,
   );
   renderBanner();
   await scenario1RateLimit();

@@ -4,17 +4,15 @@
 
 ## Project
 
-**Residential Care CRM — AI Layer** (Accodal technical assessment, Section B).
-Builds the AI layer of a CRM for residential elderly care facilities: resident
-intake, care plan management, staff scheduling, incident reporting, family
-communication, regulatory compliance.
+**Multi-Agent Swarm AI Orchestration Layer** (`care-agent-swarm`).
+High-resilience multi-agent system designed for residential healthcare workflows: resident
+intake orchestration, clinical summaries, regulatory compliance validation, compassionate
+family communication, and self-healing incident reporting workflows with immutable audit trails.
 
-Three deliverables (Section B):
-1. LLM Harness Module (reusable by all agents)
-2. Agent Swarm for resident intake (orchestrator + 3 sub-agents)
+Core Architectural Components:
+1. LLM Harness Module (resilience, circuit breaker, PHI redaction, Retry-After honoring)
+2. Agent Swarm for resident intake (orchestrator + 3 sub-agents via Promise.allSettled)
 3. Dynamic Incident Reporting Workflow (classify → route → validate-loop → escalate → audit)
-
-Plus written responses (Sections A, C, D, E) and a 10–15 min screen-recorded video walkthrough.
 
 ## Stack
 
@@ -35,7 +33,7 @@ npm run build        # tsc --noEmit (type-check only; emit is not the goal)
 npm test             # vitest run (all tests, no watch)
 npm run test:watch   # vitest watch mode
 npm run dev          # tsx src/index.ts (smoke entry point)
-npm run demo         # tsx src/demo/run-all.ts (the 3 video scenarios, deterministic with fakes)
+npm run demo         # tsx src/demo/run-all.ts (the 3 demo scenarios, deterministic with fakes)
 npm run lint         # biome check .
 npm run lint:fix     # biome check --write .
 npm run format       # biome format --write .
@@ -47,11 +45,11 @@ npm run format       # biome format --write .
 src/harness/         # LLM harness (client, schemas, retry+circuit-breaker, logger, harness.ts)
 src/agents/          # Orchestrator + medical-history, compliance, family-communication sub-agents
 src/incident/        # classify → routes → validate-loop → workflow → audit
-src/demo/            # fakes.ts (FakeAnthropicClient) + run-all.ts (3 video scenarios)
+src/demo/            # fakes.ts (FakeAnthropicClient) + run-all.ts (3 demo scenarios)
 data/                # sample-intake.json, sample-incident.json
 tests/               # harness, swarm, incident test suites
-docs/                # architecture.md, ai-testing-log.md, written-responses.md
-.opencode/skills/    # llm-harness, agent-swarm, incident-workflow, demo-scenarios, assessment-rubric
+docs/                # architecture.md, security.md, testing.md
+.opencode/skills/    # llm-harness, agent-swarm, incident-workflow, demo-scenarios
 ```
 
 ## Conventions
@@ -62,7 +60,7 @@ docs/                # architecture.md, ai-testing-log.md, written-responses.md
 - **No inline comments** unless a non-obvious tradeoff is being documented.
 - **Structured logging**: pino JSON output; sensitive fields redacted via `redact` config.
 - **Secrets**: `ANTHROPIC_API_KEY` via `.env` (never committed). Default `DEMO_MODE=true` keeps the
-  harness on `FakeAnthropicClient` for deterministic video recording. Set `DEMO_MODE=false` to
+  harness on `FakeAnthropicClient` for deterministic testing. Set `DEMO_MODE=false` to
   hit the real API (requires key).
 - **Errors**: operational failures (rate limit, timeout, 5xx, output validation) return a typed
   `HarnessResult` with `status: degraded|failed`. Programmer errors (malformed schema, bad args)
@@ -72,7 +70,7 @@ docs/                # architecture.md, ai-testing-log.md, written-responses.md
   avoid real backoff sleeps. Explicit `expect(promise).resolves.toBeDefined()` for "never
   rejects" contracts.
 
-## Deliverables checklist
+## Architecture Highlights
 
 - [x] Harness: schema validation, retry+backoff honoring `Retry-After`, redaction, timeout + graceful fallback
 - [x] Harness: circuit breaker (CLOSED/OPEN/HALF_OPEN) + `_request_id` propagation
@@ -80,10 +78,7 @@ docs/                # architecture.md, ai-testing-log.md, written-responses.md
 - [x] Swarm: orchestrator uses harness to synthesize final summary (LLM agent, with fallback)
 - [x] Incident: classify → `REQUIRED_FIELDS_BY_TYPE` → validate-loop → max-iter-guard → escalate → audit trail
 - [x] Incident: `validationHistory` per-iteration records
-- [x] Demo: FakeAnthropicClient with 3 scripted video beats (rate-limit, sub-agent failure, loop guard)
+- [x] Demo: FakeAnthropicClient with 3 deterministic scenario runs (rate-limit, sub-agent failure, loop guard)
 - [x] Tests: harness retry/redaction/schema/timeout, swarm failure-continuation, incident loop-guard/audit
-- [x] README.md with setup + architecture
-- [x] docs/architecture.md with depth (harness/swarm/incident diagrams + tradeoff discussion)
-- [x] docs/ai-testing-log.md (Section D1: ≥1 rejected/modified AI test with reason)
-- [x] docs/written-responses.md (Sections A, C, D, E)
+- [x] Documentation: README.md, docs/architecture.md, docs/security.md, docs/testing.md
 - [x] `npm run build && npm test && npx biome check .` green

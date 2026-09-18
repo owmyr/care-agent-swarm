@@ -65,8 +65,7 @@ type IntakeStatus = 'complete' | 'partial' | 'failed';
 The orchestrator uses the harness to synthesize a 2-3 sentence executive `summary` from the
 sub-agent results. If THAT call fails, fall back to a generic template
 ("Intake processed. N of 3 sub-agents completed successfully. Incomplete: ..."). This makes
-the orchestrator a real LLM agent (faithful to the "Orchestrator agent" wording in the assessment)
-and demonstrates harness reuse at the top of the stack.
+the orchestrator a true LLM synthesizer demonstrating harness reuse at the top of the stack.
 
 ## Anti-loop guards
 

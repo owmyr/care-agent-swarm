@@ -1,6 +1,6 @@
 # Architecture — Deep Dive
 
-This document is the architectural companion to the README. It covers the design rationale, the operational semantics, and the tradeoffs we chose — material that feeds the Section A written answers (AI provider resilience, agent design, workflow vs. custom code).
+This document provides a comprehensive deep dive into the system architecture, design rationale, operational semantics, and technical tradeoffs of the **Multi-Agent Swarm AI Orchestration Layer**.
 
 ---
 
@@ -131,7 +131,7 @@ Every call produces structured JSON logs in metadata-only mode:
 {
   "level": 30,
   "time": 1782364174277,
-  "name": "accodal",
+  "name": "care-agent-swarm",
   "traceId": "991886fb-...",
   "model": "claude-sonnet-4-5",
   "attempt": 0,
@@ -271,7 +271,7 @@ Each iteration pushes an entry to `validationHistory`:
 }
 ```
 
-This is the per-execution audit trail the assessment asks for. The final audit also includes `notificationsSent` (who was notified, with escalation flag) and `errors[]` (any operational failures during the run, so a reviewer can reconstruct exactly what happened).
+This is the per-execution compliance audit trail. The final audit also includes `notificationsSent` (who was notified, with escalation flag) and `errors[]` (any operational failures during the run, so a clinical reviewer can reconstruct exactly what happened).
 
 ### Max-iteration guard
 
@@ -313,7 +313,7 @@ Every operational failure is recorded in `errors[]` and `humanEscalationRequired
 - You need fine-grained control over retry/timeout/redaction
 - You need trace IDs and per-iteration observability
 
-The assessment's "structured JSON audit trail for every execution" requirement is itself a strong signal toward custom code — a managed tool would have to be wrapped to produce that anyway, and the wrapper ends up being most of the value.
+The requirement for a structured, tamper-evident JSON audit trail for every execution is a strong architectural signal toward custom orchestration code — a managed workflow tool would have to be wrapped to produce that anyway, and the wrapper ends up being most of the value.
 
 ---
 
